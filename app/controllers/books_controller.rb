@@ -3,7 +3,7 @@ class BooksController < ApplicationController
 		if !logged_in?
 			redirect '/login'
 		else
-			@books = Books.all
+			@books = Book.all
 			erb :'/books/books'
 		end
 	end
