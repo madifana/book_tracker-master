@@ -9,6 +9,7 @@ gem 'shotgun'
 gem 'tux'
 gem 'pry'
 gem 'rake'
+gem 'bcrypt'
 gem 'sinatra-twitter-bootstrap', :require => 'sinatra/twitter-bootstrap'
 gem 'require_all'
 
@@ -16,4 +17,5 @@ group :test do
 	gem 'rack-test'
 	gem 'rspec'
 	gem 'capybara'
+  gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
 end
