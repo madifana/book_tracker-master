@@ -13,7 +13,7 @@ class BooksController < ApplicationController
 			redirect '/login'
 		else
 			@post = Post.create(params)
-			erb :index
+			erb :'/books/books'
 		end
 	end
 
@@ -23,6 +23,15 @@ class BooksController < ApplicationController
 		else
 			@books = Book.all
 			erb :'/books/books'
+		end
+	end
+
+	get '/books/:id' do
+		if !logged_in?
+			redirect '/login'
+		else
+			@book = Book.find_by_id(params[:id])
+			erb :'/books/show_book'
 		end
 	end
 end
