@@ -1,4 +1,22 @@
 class BooksController < ApplicationController
+	
+	get '/books/new' do
+		if !logged_in?
+			redirect '/login'
+		else
+			erb :new
+		end
+    end
+
+    post '/books' do
+		if !logged_in?
+			redirect '/login'
+		else
+			@post = Post.create(params)
+			erb :index
+		end
+	end
+
 	get '/books' do 
 		if !logged_in?
 			redirect '/login'
@@ -7,12 +25,4 @@ class BooksController < ApplicationController
 			erb :'/books/books'
 		end
 	end
-
-	get '/books/new' do
-		if !logged_in?
-			redirect '/login'
-		else
-			erb :new
-		end
-    end
 end
