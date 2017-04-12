@@ -9,9 +9,11 @@ gem 'shotgun'
 gem 'tux'
 gem 'pry'
 gem 'rake'
-gem 'rspec'
-gem 'rack-test'
 gem 'sinatra-twitter-bootstrap', :require => 'sinatra/twitter-bootstrap'
-gem 'capybara'
 gem 'require_all'
 
+group :test do
+	gem 'rack-test'
+	gem 'rspec'
+	gem 'capybara'
+end

@@ -1,0 +1,6 @@
+<p>Hello, <%= @user.username %>!</p>
+<p>Here are the Books you read:</p>
+<% @user.books.each do |b|%>
+	<%= b.content %>
+<% end %>
+<p><a href="/logout">Log Out</a></p>
