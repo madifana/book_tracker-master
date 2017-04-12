@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 	end
 
 	post '/signup' do 
-		if params["username"] == "" || params[:password] == "" || params[:email] ""
+		if params["username"] == "" || params[:password] == "" || params[:email] == ""
 			redirect '/signup'
 		else
 			@user = User.new(username: params[:username], email: params[:email], password: params[:password])
