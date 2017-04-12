@@ -61,7 +61,7 @@ class BooksController < ApplicationController
 		else
 			@book = Book.find_by_id(params[:id])
 			@book.delete
-			erb :delete
+			erb :'/books/show_book'
 		end
 	end
 end
