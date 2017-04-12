@@ -12,7 +12,7 @@ class BooksController < ApplicationController
 		if !logged_in?
 			redirect '/login'
 		else
-			@post = Post.create(params)
+			@book = Book.create(params)
 			erb :'/books/books'
 		end
 	end
