@@ -12,6 +12,7 @@ class BooksController < ApplicationController
 		if !logged_in?
 			redirect '/login'
 		else
+			@books = Book.all
 			current_user.books.create(title: params[:title], author: params[:author])
 			erb :'/books/books'
 		end
