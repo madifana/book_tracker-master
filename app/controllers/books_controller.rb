@@ -54,4 +54,14 @@ class BooksController < ApplicationController
 			erb :'/books/show_book'
 		end
 	end
+
+	delete '/books/:id/delete' do
+		if !logged_in?
+			redirect '/login'
+		else
+			@book = Book.find_by_id(params[:id])
+			@book.delete
+			erb :delete
+		end
+	end
 end
