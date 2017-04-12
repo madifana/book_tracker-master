@@ -39,7 +39,7 @@ class BooksController < ApplicationController
 		if !logged_in?
 			redirect '/login'
 		else
-			@post = Post.find_by_id(params[:id])
+			@book = Book.find_by_id(params[:id])
 			erb :'/books/edit_book'
 		end
 	end
