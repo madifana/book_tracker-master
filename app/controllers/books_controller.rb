@@ -34,4 +34,12 @@ class BooksController < ApplicationController
 			erb :'/books/show_book'
 		end
 	end
+
+	get '/books/:id/edit' do
+		if !logged_in?
+			redirect '/login'
+		else
+			@post = Post.find_by_id(params[:id])
+			erb :'/books/edit_book'
+	end
 end
