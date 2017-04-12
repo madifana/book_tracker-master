@@ -41,6 +41,7 @@ class BooksController < ApplicationController
 		else
 			@post = Post.find_by_id(params[:id])
 			erb :'/books/edit_book'
+		end
 	end
 
 	patch '/books/:id' do
