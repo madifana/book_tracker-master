@@ -9,30 +9,11 @@ class BooksController < ApplicationController
     end
 
     post '/books' do
-		if !logged_in?
-			redirect '/login'
+		if params[:title] == "" || params[:author] == ""
+			redirect '/books/new'
 		else
-			@books = Book.all
 			current_user.books.create(title: params[:title], author: params[:author])
-			erb :'/books/books'
-		end
-	end
-
-	get '/books' do 
-		if !logged_in?
-			redirect '/login'
-		else
-			@books = Book.all
-			erb :'/books/books'
-		end
-	end
-
-	get '/books/:id' do
-		if !logged_in?
-			redirect '/login'
-		else
-			@book = Book.find_by_id(params[:id])
-			erb :'/books/show_book'
+			redirect to "/users/#{current_user.slug}"
 		end
 	end
 
@@ -46,14 +27,15 @@ class BooksController < ApplicationController
 	end
 
 	patch '/books/:id' do
-		if !logged_in?
-			redirect '/login'
+		@book = Book.find_by_id(params[:id])
+
+		if params[:title] == "" || params[:author]
+			redirect '/books/#{@book.id}/edit'
 		else
-			@book = Book.find_by_id(params[:id])
 			@book.title = params[:title]
 			@book.author = params[:author]
 			@book.save
-			erb :'/books/show_book'
+			redirect to '/users/#{current_user.slug}'
 		end
 	end
 
@@ -63,7 +45,7 @@ class BooksController < ApplicationController
 		else
 			@book = Book.find_by_id(params[:id])
 			@book.delete
-			erb :'/books/show_book'
+			redirect to "/users#{current_user.slug}"
 		end
 	end
 end
