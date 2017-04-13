@@ -29,13 +29,13 @@ class BooksController < ApplicationController
 	patch '/books/:id' do
 		@book = Book.find_by_id(params[:id])
 
-		if params[:title] == "" || params[:author]
-			redirect '/books/#{@book.id}/edit'
+		if params[:title] == "" || params[:author] == ""
+			redirect "/books/#{@book.id}/edit"
 		else
 			@book.title = params[:title]
 			@book.author = params[:author]
 			@book.save
-			redirect to '/users/#{current_user.slug}'
+			redirect to "/users/#{current_user.slug}"
 		end
 	end
 
