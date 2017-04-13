@@ -18,16 +18,16 @@ class UsersController < ApplicationController
 		end
 	end
 
-	post '/signup' do 
-		if params["username"] == "" || params[:password] == "" || params[:email] == ""
-			redirect '/signup'
-		else
-			@user = User.new(username: params[:username], email: params[:email], password: params[:password])
-			@user.save
-			session[:user_id] = @user.id 
-			redirect "/users/#{current_user.slug}"
-		end
-	end
+	post '/signup' do
+	 	@user = User.new(username: params[:username], email: params[:email], password: params[:password])
+	 	if @user.save
+			 session[:user_id] = @user.id
+		 	redirect "/users/#{current_user.slug}"
+	 	else
+		 	flash[:message] = @user.errors.full_messages.join(", ")
+		 	redirect '/signup'
+	 	end
+ 	end
 
 	get '/login' do 
 		if logged_in?

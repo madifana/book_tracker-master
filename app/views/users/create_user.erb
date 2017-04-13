@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+	<%= flash[:message] %>
+<% end %>
+
 <h1>Sign Up for a Book Tracker Account</h1>
 <form action="/signup" method="POST">
 	<label for="username">Enter Username</label>
@@ -11,3 +15,5 @@
 	<br><br>
 	<input type="submit" name="submit" value="Sign Up">
 </form>
+<br>
+<a href="/login">Login</a></p>

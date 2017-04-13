@@ -10,6 +10,7 @@ gem 'tux'
 gem 'pry'
 gem 'rake'
 gem 'bcrypt'
+gem 'rack-flash3'
 gem 'sinatra-twitter-bootstrap', :require => 'sinatra/twitter-bootstrap'
 gem 'require_all'
 
