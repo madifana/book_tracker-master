@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
 	get '/signup' do 
 		if logged_in?
-			redirect '/users/#{create_user.slug}'
+			redirect "/users/#{create_user.slug}"
 		else
 			erb :'users/create_user'
 		end
@@ -25,13 +25,13 @@ class UsersController < ApplicationController
 			@user = User.new(username: params[:username], email: params[:email], password: params[:password])
 			@user.save
 			session[:user_id] = @user.id 
-			redirect '/users/#{current_user.slug}'
+			redirect "/users/#{current_user.slug}"
 		end
 	end
 
 	get '/login' do 
 		if logged_in?
-			redirect '/users/#{current_user.slug}'
+			redirect "/users/#{current_user.slug}"
 		else
 			erb :'/users/login'
 		end
@@ -41,8 +41,9 @@ class UsersController < ApplicationController
 		@user = User.find_by(username: params[:username])
 		if @user && @user.authenticate(params[:password])
 			session[:user_id] = @user.id 
-			redirect '/users/#{current_user.slug}'
+			redirect "/users/#{current_user.slug}"
 		else
+			flash[:message] = "Invalid username or password."
 			redirect '/login'
 		end
 	end
