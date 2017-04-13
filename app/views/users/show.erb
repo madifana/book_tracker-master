@@ -1,6 +1,13 @@
 <p>Hello, <%= @user.username %>!</p>
+<p><a href="/books/new">Add a Book</a>
+<a href="/logout">Log Out</a></p>
 <p>Here are the Books you read:</p>
-<% @user.books.each do |b|%>
-	<%= b.content %>
+<% current_user.books.each do |book| %>
+  <%= book.title %> - <%= book.author %> <a href="/books/<%= book.id %>/edit">Edit</a>
+  <form method="POST" action="/books/<%= book.id %>/delete">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+
+    <input type="submit" value="Delete">
+  </form>
+  <br>
 <% end %>
-<p><a href="/logout">Log Out</a></p>

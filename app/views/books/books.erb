@@ -1,5 +1,12 @@
-<h3>Welcom, <%= current_user.username %>!</h3>
+<h3>Welcome, <%= current_user.username %>!</h3>
+<p><a href="/books/new">Add a Book</a></p>
 <p><a href="/logout">Log Out</a></p>
-<% @books.each do |b|%>
-	<li><%= b.title %></li>
+
+<h3>Book List:</h3>
+<% current_user.books.each do |b| %>
+	<%= b.title %> - <%= b.author %> <a href="/books/<%= book.id %>">Edit</a>
+	<form class="" action="/books/<%= book.id %>/delete" method="post">
+		<input id="hidden" type="hidden" name="_method" value="delete">
+		<input type="submit" value="delete">
+	</form>
 <% end %>
