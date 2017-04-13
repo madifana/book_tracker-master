@@ -41,16 +41,16 @@ class UsersController < ApplicationController
 		@user = User.find_by(username: params[:username])
 		if @user && @user.authenticate(params[:password])
 			session[:user_id] = @user.id 
-			redirect '/current_user.slug'
+			redirect '/users/#{current_user.slug}'
 		else
-			redirect '/signup'
+			redirect '/login'
 		end
 	end
 
 	get '/logout' do 
 		if logged_in?
 			session.clear
-			redirect '/index'
+			redirect '/login'
 		else
 			redirect '/'
 		end

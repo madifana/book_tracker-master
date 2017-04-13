@@ -1,4 +1,6 @@
 <p>Hello, <%= @user.username %>!</p>
+<p><a href="/books/new">Add a Book</a>
+<a href="/logout">Log Out</a></p>
 <p>Here are the Books you read:</p>
 <% current_user.books.each do |book| %>
   <%= book.title %> - <%= book.author %> <a href="/books/<%= book.id %>/edit">Edit</a>
@@ -9,4 +11,3 @@
   </form>
   <br>
 <% end %>
-<p><a href="/logout">Log Out</a></p>
